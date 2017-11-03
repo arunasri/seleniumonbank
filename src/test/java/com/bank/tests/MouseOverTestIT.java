@@ -3,7 +3,6 @@ package com.bank.tests;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,24 +14,25 @@ import org.testng.annotations.Test;
 public class MouseOverTestIT extends BOABaseIT {
 
 	@Test(priority = 1)
-	public void testBankOfAmericaPage() {
-		driver.get(baseUrl);
+	public void testBankOfAmericaPageGoingChecking() {
 		// Banking
 		this.openSubmenuLink("Banking", "Checking");
-		String Title = "Checking Accounts";
-		String GetTitle = driver.getTitle();
-		try {
-			Assert.assertEquals(Title, GetTitle);
-		} catch (AssertionError e) {
-			System.out.println("Checking Account title is displayed");
-		}
+		this.verifyPageTitle("Checking Accounts");
+	}
+
+	@Test(priority = 1)
+	public void testBankOfAmericaPageGoingSavings() {
 		this.openSubmenuLink("Banking", "Savings");
 		this.verifyPageTitle("Savings");
+	}
+
+	@Test(priority = 1)
+	public void testBankOfAmericaPageGoingCDS() {
 		this.openSubmenuLink("Banking", "CDs");
+		this.verifyPageTitle("CDS");
 	}
 
 	
-
 	@Test(priority = 2)
 	public void testCreditCardMenu() {
 		driver.get(baseUrl);
@@ -45,16 +45,6 @@ public class MouseOverTestIT extends BOABaseIT {
 		} catch (AssertionError e) {
 			System.out.println("Featured link is verified");
 		}
-		// WebElement headingElement =
-		// driver.findElement(By.className("heading"));
-		// String headingValue = headingElement.getText();
-		// try {
-		// assertEquals(headingValue, "Featured Credit Cards");
-		// }catch(AssertionError e){
-		//
-		// verificationErrors.append("featured credit cards headers should
-		// feature credit card but it is"+headingValue);
-		// }
 
 		this.goBackPage();
 
@@ -62,13 +52,7 @@ public class MouseOverTestIT extends BOABaseIT {
 		WebElement featuredCardsHeadingElement = driver.findElement(By.className("heading"));
 		String cashRewardsHeading = featuredCardsHeadingElement.getText();
 		assertEquals(cashRewardsHeading, "Cash Back Credit Cards");
-
-		// System.out.print(verificationErrors);
-		// this.openSubmenuLink("Credit Cards", "Travel & Airline Rewards
-		// Cards");
 	}
-
-	
 
 	public void openSubmenuLink(String mainMenuText, String submenuLink) {
 		// click on banking menu
