@@ -2,32 +2,17 @@ package com.bank.tests;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class MouseOverTestIT {
-	private WebDriver driver;
-	private String baseUrl;
-	private StringBuffer verificationErrors = new StringBuffer();
-
-	@BeforeMethod(alwaysRun = true)
-	public void SetUp() throws Exception {
-		driver = new ChromeDriver();
-		baseUrl = "https://www.bankofamerica.com/";
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	}
+public class MouseOverTestIT extends BOABaseIT {
 
 	@Test(priority = 1)
 	public void testBankOfAmericaPage() {
@@ -37,20 +22,20 @@ public class MouseOverTestIT {
 		String Title = "Checking Accounts";
 		String GetTitle = driver.getTitle();
 		try {
-			Assert.assertEquals(Title, GetTitle );
-		}catch(AssertionError e) {
+			Assert.assertEquals(Title, GetTitle);
+		} catch (AssertionError e) {
 			System.out.println("Checking Account title is displayed");
 		}
 		this.openSubmenuLink("Banking", "Savings");
 		this.verifyPageTitle("Savings");
 		this.openSubmenuLink("Banking", "CDs");
 	}
-	
+
 	public void verifyPageTitle(String title) {
 		String getTitle = driver.getTitle();
-		try{
+		try {
 			Assert.assertEquals(title, getTitle);
-		}catch(AssertionError e){
+		} catch (AssertionError e) {
 			System.out.println("Savings title is displayed");
 		}
 	}
@@ -64,27 +49,30 @@ public class MouseOverTestIT {
 		String GetTitle = driver.getTitle();
 		try {
 			Assert.assertEquals(Title, GetTitle);
-		}catch(AssertionError e) {
+		} catch (AssertionError e) {
 			System.out.println("Featured link is verified");
 		}
-//		WebElement headingElement = driver.findElement(By.className("heading"));
-//		String headingValue = headingElement.getText();
-//		try {
-//			assertEquals(headingValue, "Featured Credit Cards");
-//		}catch(AssertionError e){
-//		
-//			verificationErrors.append("featured credit cards headers should feature credit card but it is"+headingValue);
-//		}
-		
+		// WebElement headingElement =
+		// driver.findElement(By.className("heading"));
+		// String headingValue = headingElement.getText();
+		// try {
+		// assertEquals(headingValue, "Featured Credit Cards");
+		// }catch(AssertionError e){
+		//
+		// verificationErrors.append("featured credit cards headers should
+		// feature credit card but it is"+headingValue);
+		// }
+
 		this.goBackPage();
-	
+
 		this.openSubmenuLink("Credit Cards", "Cash Rewards Cards");
 		WebElement featuredCardsHeadingElement = driver.findElement(By.className("heading"));
 		String cashRewardsHeading = featuredCardsHeadingElement.getText();
 		assertEquals(cashRewardsHeading, "Cash Back Credit Cards");
-		
-		//System.out.print(verificationErrors);
-		// this.openSubmenuLink("Credit Cards", "Travel & Airline Rewards Cards");
+
+		// System.out.print(verificationErrors);
+		// this.openSubmenuLink("Credit Cards", "Travel & Airline Rewards
+		// Cards");
 	}
 
 	public void goBackPage() {

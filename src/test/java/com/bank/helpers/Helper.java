@@ -1,4 +1,4 @@
-package com.bank.tests;
+package com.bank.helpers;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

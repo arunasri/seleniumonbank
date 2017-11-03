@@ -15,31 +15,16 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.bank.helpers.Helper;
 import com.bank.pageobjects.BOAHomePO;
 import com.bank.pageobjects.CareerApplyJobPage;
 import com.bank.pageobjects.CareersHomePage;
 import com.bank.pageobjects.CareersPO;
 
 public class BOAHomeIT extends BOABaseIT {
-	public static final String USERNAME = "arunasri";
-	public static final String ACCESS_KEY = "5eff05a3-a91a-41aa-90ff-0a54533fe9ba";
-	public static final String URL = "https://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:443/wd/hub";
-
-	private WebDriver driver;
+	
 	private String baseUrl;
 	private StringBuffer verificationErrors = new StringBuffer();
-
-	@BeforeMethod(alwaysRun = true)
-	public void SetUp() throws Exception {
-		DesiredCapabilities caps = DesiredCapabilities.firefox();
-		caps.setCapability("platform", "Windows 10");
-		caps.setCapability("version", "56.0");
-		//
-		driver = new RemoteWebDriver(new URL(URL), caps);
-
-		baseUrl = "https://www.bankofamerica.com/";
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	}
 
 	@Test(priority = 1)
 	public void testBankOfAmerica() throws Exception {
