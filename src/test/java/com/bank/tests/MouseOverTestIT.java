@@ -31,14 +31,7 @@ public class MouseOverTestIT extends BOABaseIT {
 		this.openSubmenuLink("Banking", "CDs");
 	}
 
-	public void verifyPageTitle(String title) {
-		String getTitle = driver.getTitle();
-		try {
-			Assert.assertEquals(title, getTitle);
-		} catch (AssertionError e) {
-			System.out.println("Savings title is displayed");
-		}
-	}
+	
 
 	@Test(priority = 2)
 	public void testCreditCardMenu() {
@@ -75,10 +68,7 @@ public class MouseOverTestIT extends BOABaseIT {
 		// Cards");
 	}
 
-	public void goBackPage() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.history.go(-1)");
-	}
+	
 
 	public void openSubmenuLink(String mainMenuText, String submenuLink) {
 		// click on banking menu
